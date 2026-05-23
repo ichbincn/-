@@ -1,0 +1,5 @@
+图像质量评价结果（参考图像：original_image.png）
+--------------------------------------------------
+downsampled -> PSNR: 26.2078 dB, SSIM: 0.7885
+   bicubic -> PSNR: 27.3906 dB, SSIM: 0.8119
+    gfpgan -> PSNR: 27.6409 dB, SSIM: 0.8147
