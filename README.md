@@ -2,15 +2,9 @@
 
 本项目面向《数字图像处理》课程设计 `选题一（算法设计类）`，围绕“下采样退化后的人像图像增强与分割”问题，构建了一套可直接运行的完整 Python 项目。
 
-当前最终版主流程只保留 3 个核心算法：
-
 1. `Bicubic Interpolation`
 2. `GFPGAN`
 3. `GrabCut`
-
-说明：
-- 下采样仅作为退化步骤，不计入“三个核心算法”。
-- 该版本已经替换掉之前效果不理想的通用 ESRGAN 方案，改为更适合人脸图像增强的专用恢复模型 `GFPGAN`。
 
 ## 项目结构
 
@@ -21,7 +15,6 @@ project/
 ├── main.py
 ├── requirements.txt
 ├── README.md
-├── 创新点与90分思路.md
 ├── outputs/
 ├── models/
 └── utils/
@@ -32,16 +25,13 @@ project/
 推荐使用：
 - Python 3.12
 
-说明：
-- 项目内已经对 `GFPGAN` 在 Python 3.12 下的兼容性做了运行时补丁处理，因此无需手工改第三方源码。
-
 ## 安装依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-如果直接使用当前项目已经建立好的虚拟环境，运行方式更简单：
+如果直接使用当前项目已经建立好的虚拟环境，运行：
 
 ```bash
 .venv/bin/python main.py
@@ -49,7 +39,6 @@ pip install -r requirements.txt
 
 ## 输入文件
 
-程序会自动识别以下输入文件名之一：
 - `fig.jpg`
 - `fig.png`
 - `fig.jpeg`
@@ -156,26 +145,3 @@ gfpgan      -> PSNR: 27.6409 dB, SSIM: 0.8147
 ```
 
 从结果可以看到，`GFPGAN` 相比单独 `Bicubic` 恢复进一步提升了客观指标，同时在视觉上也更符合人脸增强任务需求。
-
-## 适合课程设计报告的创新点
-
-项目已经额外整理出一个专门文档：
-
-- [创新点与90分思路.md](/Users/chennuo/Desktop/图像proj/创新点与90分思路.md)
-
-其中总结了 3 个适合写进正文的创新点：
-- 使用人脸专用恢复模型替代通用超分模型
-- 采用“Bicubic 预恢复 + GFPGAN 人脸增强”的两阶段恢复策略
-- 将增强结果与分割任务联动，提高前景提取效果
-
-## 推荐查看的最终结果文件
-
-- [comparison_figure.png](/Users/chennuo/Desktop/图像proj/outputs/comparison_figure.png)
-- [gfpgan_result.png](/Users/chennuo/Desktop/图像proj/outputs/gfpgan_result.png)
-- [segmentation_foreground.png](/Users/chennuo/Desktop/图像proj/outputs/segmentation_foreground.png)
-- [metrics.txt](/Users/chennuo/Desktop/图像proj/outputs/metrics.txt)
-
-## 备注
-
-- `outputs/` 已经清理过，只保留当前最终方案需要的结果图。
-- 项目里仍保留部分早期实验代码模块，便于你在报告中说明方案对比与迭代过程，但它们不再参与默认主流程。
